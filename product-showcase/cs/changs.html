@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>风之画廊 - 宫崎骏作品专题站</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Microsoft Yahei", sans-serif;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    ul {
+      list-style: none;
+    }
+    body {
+      background-color: #f8f6f0;
+      color: #333;
+    }
+
+    /* 导航栏 */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      background: rgba(255,255,255,0.9);
+      box-shadow: 0 2px 8px #ddd;
+    }
+    .nav-wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+    }
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #487c6e;
+    }
+    .nav-list {
+      display: flex;
+      gap: 28px;
+    }
+    .nav-list li a {
+      font-size: 15px;
+      transition: color 0.3s;
+    }
+    .nav-list li a:hover {
+      color: #63a895;
+    }
+
+    /* 首屏Banner */
+    .banner {
+      width: 100%;
+      height: 85vh;
+      background: linear-gradient(rgba(0,0,0,0.35),rgba(0,0,0,0.35)), url("https://img1.baidu.com/it/u=3092140432,2138957207&fm=253&fmt=auto&app=138&f=JPEG?w=1920&h=960") center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      text-align: center;
+    }
+    .banner h1 {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+    .banner p {
+      font-size: 20px;
+      margin-bottom: 32px;
+      opacity: 0.95;
+    }
+    .banner-btn {
+      padding: 14px 36px;
+      background: #63a895;
+      color: white;
+      border-radius: 30px;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+    .banner-btn:hover {
+      background: #487c6e;
+    }
+
+    /* 通用容器 */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
+    .sec-title {
+      text-align: center;
+      font-size: 32px;
+      color: #3a695c;
+      margin-bottom: 45px;
+      position: relative;
+    }
+    .sec-title::after {
+      content: "";
+      width: 70px;
+      height: 3px;
+      background: #63a895;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: -12px;
+    }
+
+    /* 宫崎骏介绍区域 */
+    .about-miyazaki {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+    }
+    .about-img {
+      width: 42%;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .about-img img {
+      width: 100%;
+      display: block;
+    }
+    .about-text {
+      width: 58%;
+    }
+    .about-text h3 {
+      font-size: 24px;
+      margin-bottom: 16px;
+      color: #3a695c;
+    }
+    .about-text p {
+      line-height: 1.8;
+      font-size: 16px;
+      margin-bottom: 12px;
+    }
+
+    /* 作品卡片区域 */
+    .works-list {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    .work-card {
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px #ddd;
+      transition: transform 0.3s;
+    }
+    .work-card:hover {
+      transform: translateY(-8px);
+    }
+    .card-img {
+      height: 260px;
+      overflow: hidden;
+    }
+    .card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .card-text {
+      padding: 16px;
+    }
+    .card-text h4 {
+      font-size: 18px;
+      margin-bottom: 8px;
+      color: #222;
+    }
+    .card-text p {
+      font-size: 14px;
+      color: #666;
+      line-height: 1.6;
+    }
+
+    /* 台词板块 */
+    .quote-wrap {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 20px;
+    }
+    .quote-item {
+      background: #fff;
+      padding: 26px 22px;
+      border-left: 5px solid #63a895;
+      border-radius: 6px;
+    }
+    .quote-item p:first-child {
+      font-size: 17px;
+      line-height: 1.7;
+      margin-bottom: 10px;
+    }
+    .quote-item p:last-child {
+      text-align: right;
+      color: #777;
+      font-size: 14px;
+    }
+
+    /* 页脚 */
+    footer {
+      background: #3a5c52;
+      color: #eaeaea;
+      padding: 50px 20px 30px;
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    .footer-col h4 {
+      font-size: 18px;
+      margin-bottom: 18px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #54796f;
+    }
+    .footer-col li {
+      margin-bottom: 10px;
+      font-size: 14px;
+      opacity: 0.9;
+    }
+    .copyright {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid #54796f;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    /* 移动端适配 */
+    @media(max-width:992px){
+      .works-list {
+        grid-template-columns: repeat(2,1fr);
+      }
+      .quote-wrap {
+        grid-template-columns: repeat(2,1fr);
+      }
+      .about-miyazaki {
+        flex-direction: column;
+      }
+      .about-img,.about-text {
+        width: 100%;
+      }
+      .footer-inner {
+        grid-template-columns: 1fr;
+      }
+    }
+    @media(max-width:576px){
+      .nav-list {
+        display: none;
+      }
+      .works-list {
+        grid-template-columns: 1fr;
+      }
+      .quote-wrap {
+        grid-template-columns: 1fr;
+      }
+      .banner h1 {
+        font-size: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- 导航栏 -->
+  <header>
+    <div class="nav-wrap">
+      <a href="#" class="logo">风之画廊</a>
+      <ul class="nav-list">
+        <li><a href="#">首页</a></li>
+        <li><a href="#">全部作品</a></li>
+        <li><a href="#">人物档案</a></li>
+        <li><a href="#">幕后解析</a></li>
+        <li><a href="#">原画壁纸</a></li>
+        <li><a href="#">留言互动</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- 全屏Banner -->
+  <section class="banner">
+    <h1>奔赴宫崎骏的治愈童话世界</h1>
+    <p>每一幅画面，都是写给世界的温柔情书</p>
+    <a href="#works" class="banner-btn">浏览全部作品</a>
+  </section>
+
+  <!-- 宫崎骏介绍板块 -->
+  <section class="container">
+    <h2 class="sec-title">关于宫崎骏</h2>
+    <div class="about-miyazaki">
+      <div class="about-img">
+        <img src="https://img2.baidu.com/it/u=1697341321,3000440123&fm=253&fmt=auto&app=120&f=JPEG?w=800&h=1000" alt="宫崎骏">
+      </div>
+      <div class="about-text">
+        <h3>动画诗人 — 宫崎骏</h3>
+        <p>宫崎骏，吉卜力工作室核心创始人，日本殿堂级动画大师。一生坚持手绘动画，作品以温柔治愈的画风、深刻的人文内核打动全球观众。</p>
+        <p>他的作品始终围绕自然、成长、女性力量、反战与初心展开，龙猫、千与千寻、哈尔的移动城堡等经典影片斩获奥斯卡、柏林电影节等重磅奖项。</p>
+        <p>他热爱天空与飞行器，擅长用细腻画面描绘人与自然的相处，用童话外壳包裹对现实社会的思考。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 经典作品卡片板块 -->
+  <section id="works" class="container" style="background:#fff;">
+    <h2 class="sec-title">经典代表作</h2>
+    <div class="works-list">
+      <!-- 千与千寻 -->
+      <div class="work-card">
+        <div class="card-img">
+          <img src="https://img0.baidu.com/it/u=1298732124,3829112342&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=1200" alt="千与千寻">
+        </div>
+        <div class="card-text">
+          <h4>千与千寻</h4>
+          <p>迷失神隐世界的少女，一场关于初心与成长的冒险。</p>
+        </div>
+      </div>
+      <!-- 龙猫 -->
+      <div class="work-card">
+        <div class="card-img">
+          <img src="https://img2.baidu.com/it/u=178911033,2277812343&fm=253&fmt=auto&app=120&f=JPEG?w=800&h=1131" alt="龙猫">
+        </div>
+        <div class="card-text">
+          <h4>龙猫</h4>
+          <p>乡间森林里藏着温柔巨兽，留住童年最简单的美好。</p>
+        </div>
+      </div>
+      <!-- 哈尔的移动城堡 -->
+      <div class="work-card">
+        <div class="card-img">
+          <img src="https://img0.baidu.com/it/u=132305123,3021441134&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=1130" alt="哈尔的移动城堡">
+        </div>
+        <div class="card-text">
+          <h4>哈尔的移动城堡</h4>
+          <p>反对战争的魔法师，追逐自由与浪漫的救赎之旅。</p>
+        </div>
+      </div>
+      <!-- 天空之城 -->
+      <div class="work-card">
+        <div class="card-img">
+          <img src="https://img0.baidu.com/it/u=3830334131,1840021121&fm=253&fmt=auto&app=120&f=JPEG?w=800&h=1133" alt="天空之城">
+        </div>
+        <div class="card-text">
+          <h4>天空之城</h4>
+          <p>云端之上的古老文明，纯粹理想对抗贪婪欲望。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 治愈台词板块 -->
+  <section class="container">
+    <h2 class="sec-title">治愈台词精选</h2>
+    <div class="quote-wrap">
+      <div class="quote-item">
+        <p>曾经发生的事不可能忘记，只是暂时想不起来而已。</p>
+        <p>——《千与千寻》</p>
+      </div>
+      <div class="quote-item">
+        <p>心若是牢笼，整个世界都是牢笼。</p>
+        <p>——《哈尔的移动城堡》</p>
+      </div>
+      <div class="quote-item">
+        <p>只要活着，就会有好事发生。</p>
+        <p>——《龙猫》</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-col">
+        <h4>网站导航</h4>
+        <ul>
+          <li><a href="#">首页</a></li>
+          <li><a href="#">全部动画长片</a></li>
+          <li><a href="#">短篇与绘本</a></li>
+          <li><a href="#">原画壁纸下载</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>内容板块</h4>
+        <ul>
+          <li><a href="#">幕后创作解析</a></li>
+          <li><a href="#">久石让配乐赏析</a></li>
+          <li><a href="#">动画现实取景地</a></li>
+          <li><a href="#">观众留言墙</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>版权说明</h4>
+        <ul>
+          <li>本站仅做非商用科普赏析</li>
+          <li>所有剧照原画版权归属 ©スタジオジブリ STUDIO GHIBLI</li>
+          <li>禁止商用、二次售卖、印刷周边</li>
+          <li>图片素材取自吉卜力官方公开静止画</li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">
+      <p>风之画廊 © 2026 宫崎骏专题分享站 | 仅供爱好者交流学习</p>
+      <p>本网站无广告、无付费内容，不涉及任何商业盈利行为</p>
+    </div>
+  </footer>
+</body>
+</html>
